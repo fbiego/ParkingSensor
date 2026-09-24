@@ -1,0 +1,48 @@
+#######################################
+# Syntax Coloring Map For Ultrasonic Parking Sensor
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ParkingDisplay	KEYWORD1
+ParkingController	KEYWORD1
+ParkingControllerFrame	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+end	KEYWORD2
+available	KEYWORD2
+read	KEYWORD2
+invalidFrameCount	KEYWORD2
+isClose	KEYWORD2
+isNoReading	KEYWORD2
+toMeters	KEYWORD2
+update	KEYWORD2
+setEnabled	KEYWORD2
+isEnabled	KEYWORD2
+setDistancesTenths	KEYWORD2
+setSensorTenths	KEYWORD2
+setDistancesMeters	KEYWORD2
+setSensorMeters	KEYWORD2
+setNoReading	KEYWORD2
+clear	KEYWORD2
+getSensorTenths	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+NO_READING	LITERAL1
+CLOSE_MAX_TENTHS	LITERAL1
+MIN_NUMERIC_TENTHS	LITERAL1
+MAX_DISTANCE_TENTHS	LITERAL1
+LEFT_A	LITERAL1
+LEFT_B	LITERAL1
+RIGHT_A	LITERAL1
+RIGHT_B	LITERAL1
+SENSOR_COUNT	LITERAL1

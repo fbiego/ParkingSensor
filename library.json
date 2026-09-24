@@ -1,0 +1,22 @@
+{
+  "name": "ParkingSensor",
+  "version": "1.0.0",
+  "description": "Driver and controller decoder for a four-sensor ultrasonic parking display",
+  "keywords": "ultrasonic, parking, sensor, controller, decoder",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/fbiego/ParkingSensor.git"
+  },
+  "authors":
+  [
+    {
+        "name": "fbiego",
+        "email": "fbiego.fb@gmail.com",
+        "maintainer": true
+    }
+  ],
+  "frameworks": "arduino",
+  "platforms": "*",
+  "includes": ["ParkingDisplay.h", "ParkingController.h"]
+}
