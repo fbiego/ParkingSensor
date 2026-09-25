@@ -9,10 +9,10 @@ ParkingDisplay display(DISPLAY_PIN);
 
 void printStatus() {
     static const ParkingDisplay::Sensor order[] = {
-        ParkingDisplay::LEFT_A,
-        ParkingDisplay::LEFT_B,
-        ParkingDisplay::RIGHT_B,
-        ParkingDisplay::RIGHT_A,
+        ParkingDisplay::SENSOR_A,
+        ParkingDisplay::SENSOR_B,
+        ParkingDisplay::SENSOR_C,
+        ParkingDisplay::SENSOR_D,
     };
     static const char *const labels[] = {
         "A Left outer",
@@ -47,20 +47,20 @@ void setAll(uint8_t tenths) {
 
 void setSide(bool left, uint8_t tenths) {
     if (left) {
-        display.setSensorTenths(ParkingDisplay::LEFT_A, tenths);
-        display.setSensorTenths(ParkingDisplay::LEFT_B, tenths);
+        display.setSensorTenths(ParkingDisplay::SENSOR_A, tenths);
+        display.setSensorTenths(ParkingDisplay::SENSOR_B, tenths);
     } else {
-        display.setSensorTenths(ParkingDisplay::RIGHT_A, tenths);
-        display.setSensorTenths(ParkingDisplay::RIGHT_B, tenths);
+        display.setSensorTenths(ParkingDisplay::SENSOR_C, tenths);
+        display.setSensorTenths(ParkingDisplay::SENSOR_D, tenths);
     }
 }
 
 void isolateSensor(uint8_t sensor) {
     static const ParkingDisplay::Sensor controllerOrder[] = {
-        ParkingDisplay::LEFT_A,
-        ParkingDisplay::LEFT_B,
-        ParkingDisplay::RIGHT_B,
-        ParkingDisplay::RIGHT_A,
+        ParkingDisplay::SENSOR_A,
+        ParkingDisplay::SENSOR_B,
+        ParkingDisplay::SENSOR_C,
+        ParkingDisplay::SENSOR_D,
     };
 
     display.clear();
@@ -93,7 +93,7 @@ bool setFourValues(const char *input) {
         return false;
     }
 
-    display.setDistancesMeters(left_outer, left_mid, right_outer, right_mid);
+    display.setDistancesMeters(left_outer, left_mid, right_mid, right_outer);
     return true;
 }
 

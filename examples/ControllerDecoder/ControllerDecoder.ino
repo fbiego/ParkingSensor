@@ -34,12 +34,12 @@ void loop() {
         return;
     }
 
-    printReading("A Left outer", frame.leftA);
+    printReading("A Left outer", frame.sensorA);
     Serial.print("  ");
-    printReading("B Left mid", frame.leftB);
+    printReading("B Left mid", frame.sensorB);
     Serial.print("  ");
-    printReading("C Right mid", frame.rightB);
+    printReading("C Right mid", frame.sensorC);
     Serial.print("  ");
-    printReading("D Right outer", frame.rightA);
+    printReading("D Right outer", frame.sensorD);
     Serial.printf("  invalid=%lu\n", controller.invalidFrameCount());
 }

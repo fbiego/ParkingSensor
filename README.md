@@ -49,7 +49,7 @@ ParkingDisplay display(32);
 void setup() {
     display.begin();
 
-    // API order: left outer, left mid, right outer, right mid.
+    // Sensor order: A left outer, B left mid, C right mid, D right outer.
     display.setDistancesMeters(1.2f, 0.8f, 2.0f, 1.5f);
 }
 
@@ -68,6 +68,10 @@ reading.
 For already-quantized data, use `setDistancesTenths()`. Values `0` through
 `2` mean close, `3` through `25` represent `0.3` through `2.5` metres, and
 `ParkingDisplay::NO_READING` disables one sensor reading.
+
+Individual readings use the labels printed on the controller:
+`ParkingDisplay::SENSOR_A` is left outer, `SENSOR_B` is left mid, `SENSOR_C`
+is right mid, and `SENSOR_D` is right outer.
 
 The project's example sketch also accepts four readings from the serial
 monitor at 115200 baud:
@@ -99,8 +103,8 @@ void setup() {
 void loop() {
     ParkingControllerFrame frame;
     if (controller.read(frame)) {
-        // leftA = A left outer, leftB = B left mid,
-        // rightB = C right mid, rightA = D right outer.
+        // sensorA = left outer, sensorB = left mid,
+        // sensorC = right mid, sensorD = right outer.
     }
 }
 ```
@@ -139,8 +143,8 @@ form four bytes in this physical wire order:
 | 2 | C right mid |
 | 3 | B left mid |
 
-The public library API rearranges these into grouped-by-side order:
-left outer, left mid, right outer, right mid.
+The public library API rearranges these into controller-label order:
+A left outer, B left mid, C right mid, D right outer.
 
 ### Distance values
 

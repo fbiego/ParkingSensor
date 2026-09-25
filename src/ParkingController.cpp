@@ -55,17 +55,17 @@ bool ParkingController::read(ParkingControllerFrame &frame) {
         return false;
     }
 
-    const uint8_t leftA = _pendingWireBytes[0];
-    const uint8_t rightA = _pendingWireBytes[1];
-    const uint8_t rightB = _pendingWireBytes[2];
-    const uint8_t leftB = _pendingWireBytes[3];
+    const uint8_t sensorA = _pendingWireBytes[0];
+    const uint8_t sensorD = _pendingWireBytes[1];
+    const uint8_t sensorC = _pendingWireBytes[2];
+    const uint8_t sensorB = _pendingWireBytes[3];
     _frameAvailable = false;
     interrupts();
 
-    frame.leftA = leftA;
-    frame.leftB = leftB;
-    frame.rightA = rightA;
-    frame.rightB = rightB;
+    frame.sensorA = sensorA;
+    frame.sensorB = sensorB;
+    frame.sensorC = sensorC;
+    frame.sensorD = sensorD;
     return true;
 }
 

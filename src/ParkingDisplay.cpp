@@ -49,15 +49,15 @@ bool ParkingDisplay::isEnabled() const {
 }
 
 void ParkingDisplay::setDistancesTenths(
-    uint8_t leftA,
-    uint8_t leftB,
-    uint8_t rightA,
-    uint8_t rightB
+    uint8_t sensorA,
+    uint8_t sensorB,
+    uint8_t sensorC,
+    uint8_t sensorD
 ) {
-    _distances[LEFT_A] = encodeTenths(leftA);
-    _distances[RIGHT_A] = encodeTenths(rightA);
-    _distances[RIGHT_B] = encodeTenths(rightB);
-    _distances[LEFT_B] = encodeTenths(leftB);
+    _distances[SENSOR_A] = encodeTenths(sensorA);
+    _distances[SENSOR_B] = encodeTenths(sensorB);
+    _distances[SENSOR_C] = encodeTenths(sensorC);
+    _distances[SENSOR_D] = encodeTenths(sensorD);
 }
 
 void ParkingDisplay::setSensorTenths(Sensor sensor, uint8_t tenths) {
@@ -66,11 +66,11 @@ void ParkingDisplay::setSensorTenths(Sensor sensor, uint8_t tenths) {
     }
 }
 
-void ParkingDisplay::setDistancesMeters(float leftA, float leftB, float rightA, float rightB) {
-    _distances[LEFT_A] = encodeMeters(leftA);
-    _distances[RIGHT_A] = encodeMeters(rightA);
-    _distances[RIGHT_B] = encodeMeters(rightB);
-    _distances[LEFT_B] = encodeMeters(leftB);
+void ParkingDisplay::setDistancesMeters(float sensorA, float sensorB, float sensorC, float sensorD) {
+    _distances[SENSOR_A] = encodeMeters(sensorA);
+    _distances[SENSOR_B] = encodeMeters(sensorB);
+    _distances[SENSOR_C] = encodeMeters(sensorC);
+    _distances[SENSOR_D] = encodeMeters(sensorD);
 }
 
 void ParkingDisplay::setSensorMeters(Sensor sensor, float meters) {
@@ -108,6 +108,13 @@ uint8_t ParkingDisplay::encodeMeters(float meters) {
 }
 
 void ParkingDisplay::writeFrame() {
+    static const Sensor wireOrder[SENSOR_COUNT] = {
+        SENSOR_A,
+        SENSOR_D,
+        SENSOR_C,
+        SENSOR_B,
+    };
+
     noInterrupts();
 
     digitalWrite(_pin, HIGH);
@@ -120,7 +127,7 @@ void ParkingDisplay::writeFrame() {
 
     for (uint8_t sensor = 0; sensor < SENSOR_COUNT; ++sensor) {
         for (int8_t bit = 7; bit >= 0; --bit) {
-            const bool one = bitRead(_distances[sensor], bit);
+            const bool one = bitRead(_distances[wireOrder[sensor]], bit);
 
             digitalWrite(_pin, LOW);
             delayMicroseconds(one ? BIT_SHORT_US : BIT_LONG_US);

@@ -6,11 +6,12 @@
 
 class ParkingDisplay {
 public:
+    // Controller labels: A left outer, B left mid, C right mid, D right outer.
     enum Sensor : uint8_t {
-        LEFT_A = 0,
-        RIGHT_A = 1,
-        RIGHT_B = 2,
-        LEFT_B = 3,
+        SENSOR_A = 0,
+        SENSOR_B = 1,
+        SENSOR_C = 2,
+        SENSOR_D = 3,
         SENSOR_COUNT = 4,
     };
 
@@ -30,12 +31,12 @@ public:
 
     // Values are tenths of a meter. 0-2 select the close-object indication,
     // 3-25 display 0.3-2.5, and NO_READING blanks that sensor.
-    // Public order is grouped by side: left outer, left mid, right outer, right mid.
-    void setDistancesTenths(uint8_t leftA, uint8_t leftB, uint8_t rightA, uint8_t rightB);
+    // Argument order follows the controller labels: A, B, C, D.
+    void setDistancesTenths(uint8_t sensorA, uint8_t sensorB, uint8_t sensorC, uint8_t sensorD);
     void setSensorTenths(Sensor sensor, uint8_t tenths);
 
     // Negative, NaN, or values above 2.5 m are treated as no reading.
-    void setDistancesMeters(float leftA, float leftB, float rightA, float rightB);
+    void setDistancesMeters(float sensorA, float sensorB, float sensorC, float sensorD);
     void setSensorMeters(Sensor sensor, float meters);
 
     void setNoReading(Sensor sensor);

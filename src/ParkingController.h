@@ -7,10 +7,10 @@
 #endif
 
 struct ParkingControllerFrame {
-    uint8_t leftA;
-    uint8_t leftB;
-    uint8_t rightA;
-    uint8_t rightB;
+    uint8_t sensorA;
+    uint8_t sensorB;
+    uint8_t sensorC;
+    uint8_t sensorD;
 };
 
 class ParkingController {
